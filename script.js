@@ -376,7 +376,7 @@ if (avatar) {
     poses.forEach((s) => { if (s.el && s.el.getBoundingClientRect().top < innerHeight * 0.5) found = s; });
     avatar.classList.remove("flip");
     avatar.dataset.pose = found.pose;
-    if (found !== current) { current = found; say(found.text); }
+    current = found; // Sprechblase nur noch beim Antippen, damit er nicht ablenkt
   };
   addEventListener("scroll", () => {
     avatar.classList.toggle("flip", scrollY < lastY);
