@@ -406,16 +406,6 @@ ul, ol { list-style: none; }
 /* Footer */
 .footer { padding: 28px 0; text-align: center; color: #cfcfcf; font-size: var(--fs-small); background: var(--black); }
 
-/* ===== Eigener Mauszeiger (nur Computer) ===== */
-.cursor { display: none; }
-.has-cursor .cursor { display: block; }
-.has-cursor, .has-cursor a, .has-cursor button, .has-cursor .print { cursor: none; }
-.cursor__dot, .cursor__ring { position: fixed; top: 0; left: 0; z-index: 90; pointer-events: none; border-radius: 50%; transform: translate(-50%, -50%); }
-.cursor__dot { width: 8px; height: 8px; background: var(--black); }
-.cursor__ring { width: 38px; height: 38px; border: 2px solid var(--black); transition: width .25s, height .25s, background .25s, border-color .25s; }
-.cursor.hover .cursor__ring { width: 64px; height: 64px; background: rgba(124, 200, 245, .35); border-color: var(--blue-text); }
-.cursor.down .cursor__ring { width: 28px; height: 28px; }
-
 /* ===== Klick-Welle auf Buttons ===== */
 .ripple { position: absolute; border-radius: 50%; background: rgba(124, 200, 245, .6); transform: scale(0); animation: ripple .6s ease-out; pointer-events: none; }
 @keyframes ripple { to { transform: scale(4); opacity: 0; } }
@@ -436,6 +426,91 @@ ul, ol { list-style: none; }
 
 /* Aktiver Menüpunkt */
 .nav__links a.active:not(.btn)::after { transform: scaleX(1); }
+
+/* ===== Mini-Avatar ===== */
+.avatar {
+  position: fixed; left: 0; bottom: 8px; z-index: 44; width: 84px; height: 112px;
+  transform: translateX(var(--x, 16px)); transition: transform .5s cubic-bezier(.2,.8,.2,1);
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.avatar__svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1.5px #fff) drop-shadow(0 4px 6px rgba(0,0,0,.2)); }
+.avatar.flip .avatar__svg { transform: scaleX(-1); }
+.avatar__bubble {
+  position: absolute; bottom: 100%; left: 50%; white-space: nowrap; margin-bottom: 2px;
+  background: var(--white); border: 2px solid var(--black); border-radius: 14px; padding: 4px 10px;
+  font-size: 13px; font-weight: 600; box-shadow: 3px 3px 0 var(--blue);
+  transform: translateX(-30%) scale(.6); opacity: 0; transition: opacity .3s, transform .3s; pointer-events: none;
+}
+.avatar.talk .avatar__bubble { opacity: 1; transform: translateX(-30%) scale(1); }
+
+.avatar .leg, .avatar .arm, .avatar .body, .avatar .head, .avatar .prop, .avatar .eyes { transform-box: view-box; }
+.avatar .leg--l { transform-origin: 52px 110px; } .avatar .leg--r { transform-origin: 68px 110px; }
+.avatar .arm--l { transform-origin: 38px 74px; } .avatar .arm--r { transform-origin: 82px 74px; }
+.avatar .head { transform-origin: 60px 62px; }
+.avatar .eyes { transform-origin: 60px 47px; animation: blink 4s infinite; }
+@keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.1); } }
+.avatar .prop { opacity: 0; transition: opacity .3s; }
+
+/* Laufen */
+.avatar[data-pose="walk"] .leg--l { animation: legSwing .45s ease-in-out infinite alternate; }
+.avatar[data-pose="walk"] .leg--r { animation: legSwing .45s ease-in-out infinite alternate-reverse; }
+.avatar[data-pose="walk"] .arm--l { animation: armSwing .45s ease-in-out infinite alternate-reverse; }
+.avatar[data-pose="walk"] .arm--r { animation: armSwing .45s ease-in-out infinite alternate; }
+.avatar[data-pose="walk"] .body, .avatar[data-pose="walk"] .head { animation: bobBody .225s ease-in-out infinite alternate; }
+@keyframes legSwing { from { transform: rotate(-22deg); } to { transform: rotate(22deg); } }
+@keyframes armSwing { from { transform: rotate(-25deg); } to { transform: rotate(25deg); } }
+@keyframes bobBody { to { transform: translateY(-2px); } }
+
+/* Winken */
+.avatar[data-pose="wave"] .arm--r { animation: wave .5s ease-in-out infinite alternate; }
+@keyframes wave { from { transform: rotate(-140deg); } to { transform: rotate(-175deg); } }
+.avatar[data-pose="wave"] .head { animation: tilt 1s ease-in-out infinite alternate; }
+@keyframes tilt { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+
+/* Tippen am Laptop */
+.avatar[data-pose="type"] .prop--laptop { opacity: 1; }
+.avatar[data-pose="type"] .arm--l { animation: typeL .25s ease-in-out infinite alternate; }
+.avatar[data-pose="type"] .arm--r { animation: typeR .25s ease-in-out infinite alternate-reverse; }
+@keyframes typeL { from { transform: rotate(-30deg); } to { transform: rotate(-40deg); } }
+@keyframes typeR { from { transform: rotate(30deg); } to { transform: rotate(40deg); } }
+.avatar[data-pose="type"] .code-line { animation: codeIn 1.6s steps(6) infinite; transform-box: fill-box; transform-origin: left; }
+.avatar[data-pose="type"] .code-line:nth-child(4) { animation-delay: .4s; } .avatar[data-pose="type"] .code-line:nth-child(5) { animation-delay: .8s; }
+@keyframes codeIn { from { transform: scaleX(0); } }
+
+/* Schreiben ins Heft */
+.avatar[data-pose="write"] .prop--paper, .avatar[data-pose="write"] .prop--pencil { opacity: 1; }
+.avatar[data-pose="write"] .arm--r { animation: write .3s ease-in-out infinite alternate; }
+@keyframes write { from { transform: rotate(-12deg); } to { transform: rotate(-2deg) translateX(2px); } }
+.avatar[data-pose="write"] .scribble { stroke-dasharray: 60; animation: scribble 2s linear infinite; }
+@keyframes scribble { from { stroke-dashoffset: 60; } to { stroke-dashoffset: 0; } }
+.avatar[data-pose="write"] .head { transform: rotate(6deg); }
+
+/* Basketball: Wurf in den Korb */
+.avatar[data-pose="shoot"] .prop--hoop, .avatar[data-pose="shoot"] .prop--ball { opacity: 1; }
+.avatar[data-pose="shoot"] .arm--l, .avatar[data-pose="shoot"] .arm--r { animation: shootArms 2.2s ease-in-out infinite; }
+@keyframes shootArms { 0%, 20% { transform: rotate(0); } 35%, 55% { transform: rotate(-165deg); } 75%, 100% { transform: rotate(0); } }
+.avatar[data-pose="shoot"] .arm--l { animation-name: shootArmsL; }
+@keyframes shootArmsL { 0%, 20% { transform: rotate(0); } 35%, 55% { transform: rotate(165deg); } 75%, 100% { transform: rotate(0); } }
+.avatar[data-pose="shoot"] .prop--ball { animation: shootBall 2.2s ease-in-out infinite; }
+@keyframes shootBall {
+  0% { transform: translate(0, 38px); } 10% { transform: translate(0, 52px); } 20% { transform: translate(0, 38px); }
+  35% { transform: translate(0, -2px); } 55% { transform: translate(44px, -60px); } 62% { transform: translate(44px, -36px); }
+  80% { transform: translate(30px, 76px); } 100% { transform: translate(0, 38px); }
+}
+.avatar[data-pose="shoot"] .body { animation: jump 2.2s ease-in-out infinite; }
+@keyframes jump { 0%, 30%, 60%, 100% { transform: none; } 42% { transform: translateY(-6px); } }
+
+/* 3D-Druck: Würfel wächst aus dem Drucker */
+.avatar[data-pose="print"] .prop--printer { opacity: 1; }
+.avatar[data-pose="print"] .print-cube { transform-box: fill-box; transform-origin: bottom; animation: printCube 2.4s ease-in-out infinite; }
+@keyframes printCube { from { transform: scaleY(0); } 70%, to { transform: scaleY(1); } }
+.avatar[data-pose="print"] .arm--r { transform: rotate(-60deg); }
+.avatar[data-pose="print"] .head { transform: rotate(8deg); }
+
+@media (max-width: 760px) {
+  .avatar { width: 58px; height: 78px; bottom: 6px; }
+  .avatar__bubble { font-size: 11px; padding: 3px 8px; }
+}
 
 /* ===== Einblenden beim Scrollen (verschiedene Richtungen) ===== */
 .reveal { opacity: 0; transform: translateY(60px); transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); transition-delay: var(--d, 0s); }

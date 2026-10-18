@@ -344,24 +344,50 @@ if (ball) {
   ball.addEventListener("animationend", (e) => { if (e.animationName === "shoot") ball.classList.remove("shoot"); });
 }
 
-// Eigener Mauszeiger, der über Links grösser wird
-if (finePointer) {
-  const cursor = document.querySelector(".cursor");
-  const dot = cursor.querySelector(".cursor__dot");
-  const ringEl = cursor.querySelector(".cursor__ring");
-  document.documentElement.classList.add("has-cursor");
-  let x = innerWidth / 2, y = innerHeight / 2, rx = x, ry = y;
-  addEventListener("mousemove", (e) => {
-    x = e.clientX; y = e.clientY;
-    dot.style.left = x + "px"; dot.style.top = y + "px";
-    cursor.classList.toggle("hover", !!e.target.closest("a, button, .print, .tilt"));
-  });
-  addEventListener("mousedown", () => cursor.classList.add("down"));
-  addEventListener("mouseup", () => cursor.classList.remove("down"));
-  const follow = () => {
-    rx += (x - rx) * 0.18; ry += (y - ry) * 0.18;
-    ringEl.style.left = rx + "px"; ringEl.style.top = ry + "px";
-    requestAnimationFrame(follow);
+// Mini-Avatar: läuft beim Scrollen mit und macht je nach Bereich etwas anderes
+const avatar = document.querySelector(".avatar");
+if (avatar) {
+  const bubble = avatar.querySelector(".avatar__bubble");
+  const poses = [
+    ["start", "wave", "Hi! 👋"],
+    ["ueber-mich", "wave", "Das bin ich!"],
+    ["arbeit", "type", "Am Automatisieren …"],
+    ["schule", "write", "Do & Fr: Schule ✏️"],
+    ["basketball", "shoot", "Swish! 🏀"],
+    ["3d-druck", "print", "Druckt gerade …"],
+    ["kontakt", "wave", "Schreib mir! ✉️"],
+  ].map(([id, pose, text]) => ({ el: document.getElementById(id), pose, text }));
+  let current = null, walkTimer, talkTimer, lastY = scrollY;
+
+  const say = (text) => {
+    bubble.textContent = text;
+    avatar.classList.add("talk");
+    clearTimeout(talkTimer);
+    talkTimer = setTimeout(() => avatar.classList.remove("talk"), 2600);
   };
-  follow();
+  const place = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const p = max > 0 ? scrollY / max : 0;
+    const room = innerWidth - avatar.offsetWidth - (innerWidth < 760 ? 80 : 110);
+    avatar.style.setProperty("--x", 16 + p * Math.max(room - 16, 0) + "px");
+  };
+  const settle = () => {
+    let found = poses[0];
+    poses.forEach((s) => { if (s.el && s.el.getBoundingClientRect().top < innerHeight * 0.5) found = s; });
+    avatar.classList.remove("flip");
+    avatar.dataset.pose = found.pose;
+    if (found !== current) { current = found; say(found.text); }
+  };
+  addEventListener("scroll", () => {
+    avatar.classList.toggle("flip", scrollY < lastY);
+    lastY = scrollY;
+    avatar.dataset.pose = "walk";
+    place();
+    clearTimeout(walkTimer);
+    walkTimer = setTimeout(settle, 450);
+  }, { passive: true });
+  addEventListener("resize", place);
+  avatar.addEventListener("click", () => say(current ? current.text : "Hi! 👋"));
+  place();
+  setTimeout(settle, 1600);
 }
