@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body class="loading">
 
@@ -30,7 +30,6 @@
         <a href="#schule">Schule</a>
         <a href="#basketball">Basketball</a>
         <a href="#3d-druck">3D-Druck</a>
-        <a href="ferien.html">Ferien</a>
         <a href="#kontakt" class="btn btn--small">Kontakt</a>
       </nav>
     </div>
@@ -224,7 +223,8 @@
                  alt="Logo 49ers Langenthal"
                  onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'logo-fallback',textContent:'49ers'}))">
           </a>
-          <div class="ball" aria-hidden="true">🏀</div>
+          <button class="ball" aria-label="Wirf den Ball">🏀</button>
+          <span class="swish" aria-hidden="true">Swish!</span>
         </div>
         <div class="basketball__text">
           <p class="kicker reveal">Basketball</p>
@@ -305,11 +305,17 @@
       <div class="container">
         <h2 class="contact__title reveal" data-anim="zoom">Lass uns <span class="mark">reden.</span></h2>
         <p class="lead reveal">Du suchst Verstärkung für ein Projekt oder ein Team? Ich freue mich über deine Nachricht.</p>
-        <a href="mailto:muzammill.hamidi@swisscom.com" class="btn btn--big magnetic reveal">muzammill.hamidi@swisscom.com</a>
+        <a href="mailto:muzammill.hamidi@swisscom.com" class="btn btn--big magnetic reveal">muzammill.hamidi@<wbr>swisscom.com</a>
       </div>
     </section>
 
   </main>
+
+  <button class="to-top" aria-label="Nach oben">
+    <svg viewBox="0 0 48 48" aria-hidden="true"><circle class="to-top__track" cx="24" cy="24" r="21"/><circle class="to-top__ring" cx="24" cy="24" r="21"/></svg>
+    <span>↑</span>
+  </button>
+  <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
 
   <footer class="footer">
     <div class="container">
@@ -334,6 +340,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>

@@ -265,3 +265,103 @@ document.querySelectorAll(".langs button").forEach((btn) =>
     tick();
   })
 );
+
+// Zitate: Höhe an das längste Zitat anpassen, damit auf dem Handy nichts überlappt
+const slides = document.querySelector(".quotes__slides");
+if (slides) {
+  const fitQuotes = () => {
+    const max = Math.max(...[...slides.querySelectorAll(".quote")].map((q) => q.offsetHeight));
+    slides.style.minHeight = max + "px";
+  };
+  addEventListener("resize", fitQuotes);
+  document.fonts?.ready.then(fitQuotes);
+  fitQuotes();
+}
+
+// Kicker-Texte werden beim Erscheinen "entschlüsselt"
+const scrambleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&";
+const scramble = (el) => {
+  const final = el.dataset.final || (el.dataset.final = el.textContent);
+  let frame = 0;
+  clearInterval(el._scr);
+  el._scr = setInterval(() => {
+    el.textContent = [...final].map((ch, i) =>
+      i < frame / 2 || ch === " " ? ch : scrambleChars[Math.floor(Math.random() * scrambleChars.length)]
+    ).join("");
+    if (++frame > final.length * 2) { clearInterval(el._scr); el.textContent = final; }
+  }, 35);
+};
+const kickerObserver = new IntersectionObserver(
+  (entries) => entries.forEach((e) => e.isIntersecting && scramble(e.target)),
+  { threshold: 0.8 }
+);
+document.querySelectorAll(".kicker").forEach((k) => kickerObserver.observe(k));
+
+// Klick-Welle auf Buttons
+document.querySelectorAll(".btn, .langs button").forEach((btn) =>
+  btn.addEventListener("click", (e) => {
+    const r = btn.getBoundingClientRect();
+    const size = Math.max(r.width, r.height);
+    const wave = document.createElement("span");
+    wave.className = "ripple";
+    wave.style.width = wave.style.height = size + "px";
+    wave.style.left = e.clientX - r.left - size / 2 + "px";
+    wave.style.top = e.clientY - r.top - size / 2 + "px";
+    btn.style.position = btn.style.position || "relative";
+    btn.style.overflow = "hidden";
+    btn.appendChild(wave);
+    setTimeout(() => wave.remove(), 650);
+  })
+);
+
+// Nach-oben-Button mit Fortschrittsring und aktiver Menüpunkt
+const toTop = document.querySelector(".to-top");
+const ring = document.querySelector(".to-top__ring");
+const navLinks = [...document.querySelectorAll('.nav__links a[href^="#"]:not(.btn)')];
+const sections = navLinks.map((a) => document.getElementById(a.getAttribute("href").slice(1)));
+const onScrollExtras = () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  const p = max > 0 ? scrollY / max : 0;
+  toTop.classList.toggle("show", scrollY > innerHeight * 0.6);
+  ring.style.strokeDashoffset = 132 * (1 - p);
+  let current = -1;
+  sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top < innerHeight * 0.4) current = i; });
+  navLinks.forEach((a, i) => a.classList.toggle("active", i === current));
+};
+addEventListener("scroll", () => requestAnimationFrame(onScrollExtras), { passive: true });
+toTop.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
+onScrollExtras();
+
+// Basketball antippen = Wurf mit "Swish!"
+const ball = document.querySelector(".ball");
+const swish = document.querySelector(".swish");
+if (ball) {
+  ball.addEventListener("click", () => {
+    ball.classList.remove("shoot"); swish.classList.remove("show");
+    void ball.offsetWidth;
+    ball.classList.add("shoot"); swish.classList.add("show");
+  });
+  ball.addEventListener("animationend", (e) => { if (e.animationName === "shoot") ball.classList.remove("shoot"); });
+}
+
+// Eigener Mauszeiger, der über Links grösser wird
+if (finePointer) {
+  const cursor = document.querySelector(".cursor");
+  const dot = cursor.querySelector(".cursor__dot");
+  const ringEl = cursor.querySelector(".cursor__ring");
+  document.documentElement.classList.add("has-cursor");
+  let x = innerWidth / 2, y = innerHeight / 2, rx = x, ry = y;
+  addEventListener("mousemove", (e) => {
+    x = e.clientX; y = e.clientY;
+    dot.style.left = x + "px"; dot.style.top = y + "px";
+    cursor.classList.toggle("hover", !!e.target.closest("a, button, .print, .tilt"));
+  });
+  addEventListener("mousedown", () => cursor.classList.add("down"));
+  addEventListener("mouseup", () => cursor.classList.remove("down"));
+  const follow = () => {
+    rx += (x - rx) * 0.18; ry += (y - ry) * 0.18;
+    ringEl.style.left = rx + "px"; ringEl.style.top = ry + "px";
+    requestAnimationFrame(follow);
+  };
+  follow();
+}
