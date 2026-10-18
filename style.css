@@ -402,6 +402,9 @@ ul, ol { list-style: none; }
 .contact { text-align: center; padding: 130px 0; }
 .contact__title { font-size: clamp(36px, 6vw, 64px); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 20px; }
 .contact .lead { margin: 0 auto 36px; }
+.cv-link { margin-top: 28px; font-size: var(--fs-small); }
+.cv-link a { color: var(--grey-dark); text-decoration: none; opacity: .7; background: linear-gradient(var(--blue), var(--blue)) left bottom / 0 2px no-repeat; transition: opacity .25s, background-size .3s; }
+.cv-link a:hover { opacity: 1; background-size: 100% 2px; }
 
 /* Footer */
 .footer { padding: 28px 0; text-align: center; color: #cfcfcf; font-size: var(--fs-small); background: var(--black); }
