@@ -179,16 +179,69 @@ if (finePointer) {
   });
 }
 
-// Grossansicht für 3D-Drucke
+// Grossansicht für 3D-Drucke: grosses Bild, weitere Bilder und getippter Text
 const lightbox = document.querySelector(".lightbox");
-const closeLightbox = () => (lightbox.hidden = true);
+const lbImg = lightbox.querySelector(".lightbox__img");
+const lbThumbs = lightbox.querySelector(".lightbox__thumbs");
+const lbTyped = lightbox.querySelector(".lightbox__typed");
+const lbPrev = lightbox.querySelector(".lightbox__nav--prev");
+const lbNext = lightbox.querySelector(".lightbox__nav--next");
+let lbImages = [], lbIndex = 0, typeTimer;
+
+const showImage = (i) => {
+  lbIndex = (i + lbImages.length) % lbImages.length;
+  lbImg.classList.remove("swap");
+  void lbImg.offsetWidth; // Animation neu starten
+  lbImg.classList.add("swap");
+  lbImg.src = lbImages[lbIndex];
+  [...lbThumbs.children].forEach((t, n) => t.classList.toggle("active", n === lbIndex));
+};
+
+const typeText = (text) => {
+  clearTimeout(typeTimer);
+  lbTyped.textContent = "";
+  let c = 0;
+  const tick = () => {
+    lbTyped.textContent = text.slice(0, ++c);
+    if (c < text.length) typeTimer = setTimeout(tick, 22);
+  };
+  typeTimer = setTimeout(tick, 350);
+};
+
 document.querySelectorAll(".print").forEach((card) =>
   card.addEventListener("click", () => {
-    lightbox.querySelector(".lightbox__img").innerHTML = card.querySelector(".print__img").outerHTML;
-    lightbox.querySelector(".lightbox__title").textContent = card.dataset.title || card.querySelector("h3").textContent;
-    lightbox.querySelector(".lightbox__text").textContent = card.dataset.text || "";
+    lbImages = (card.dataset.images || card.querySelector("img")?.getAttribute("src") || "").split("|").filter(Boolean);
+    if (!lbImages.length) return;
+    lbImg.alt = card.querySelector("img")?.alt || "";
+    lbThumbs.innerHTML = "";
+    if (lbImages.length > 1) {
+      lbImages.forEach((src, n) => {
+        const b = document.createElement("button");
+        b.setAttribute("aria-label", `Bild ${n + 1}`);
+        b.style.backgroundImage = `url("${src}")`;
+        b.addEventListener("click", () => showImage(n));
+        lbThumbs.appendChild(b);
+      });
+    }
+    lbPrev.hidden = lbNext.hidden = lbImages.length < 2;
+    showImage(0);
+    lightbox.querySelector(".lightbox__title").textContent = card.querySelector("h3").textContent;
     lightbox.hidden = false;
+    document.body.style.overflow = "hidden";
+    typeText(card.dataset.text || "");
   })
 );
+const closeLightbox = () => {
+  lightbox.hidden = true;
+  document.body.style.overflow = "";
+  clearTimeout(typeTimer);
+};
+lbPrev.addEventListener("click", () => showImage(lbIndex - 1));
+lbNext.addEventListener("click", () => showImage(lbIndex + 1));
 lightbox.addEventListener("click", (e) => { if (e.target === lightbox || e.target.closest(".lightbox__close")) closeLightbox(); });
-addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
+addEventListener("keydown", (e) => {
+  if (lightbox.hidden) return;
+  if (e.key === "Escape") closeLightbox();
+  if (e.key === "ArrowRight" && lbImages.length > 1) showImage(lbIndex + 1);
+  if (e.key === "ArrowLeft" && lbImages.length > 1) showImage(lbIndex - 1);
+});

@@ -293,10 +293,12 @@ ul, ol { list-style: none; }
 @keyframes bounce { 0% { transform: translateY(0) rotate(0); } 100% { transform: translateY(90px) rotate(200deg); } }
 
 /* 3D-Druck Galerie */
-.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
 .print { overflow: hidden; cursor: pointer; }
-.print__img { aspect-ratio: 4 / 3; overflow: hidden; background: var(--grey); border-bottom: 2px solid var(--black); }
+.print__img { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--grey); border-bottom: 2px solid var(--black); }
 .print__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.print__img::after { content: "Ansehen ↗"; position: absolute; right: 12px; bottom: 12px; background: var(--white); border: 2px solid var(--black); border-radius: 999px; padding: 4px 12px; font-size: var(--fs-small); font-weight: 600; opacity: 0; transform: translateY(8px); transition: opacity .3s, transform .3s; }
+.print:hover .print__img::after { opacity: 1; transform: none; }
 .print:hover .print__img img { transform: scale(1.1) rotate(1deg); }
 .print__img--empty {
   display: flex; align-items: center; justify-content: center; color: var(--grey-dark); font-size: var(--fs-small); font-weight: 600;
@@ -309,16 +311,41 @@ ul, ol { list-style: none; }
 .print p { color: var(--muted); font-size: var(--fs-small); }
 
 .lightbox {
-  position: fixed; inset: 0; z-index: 60; background: rgba(14,14,14,.85); backdrop-filter: blur(6px);
+  position: fixed; inset: 0; z-index: 60; background: rgba(14,14,14,.88); backdrop-filter: blur(6px);
   display: flex; align-items: center; justify-content: center; padding: 20px;
 }
 .lightbox[hidden] { display: none; }
-.lightbox__body { max-width: 760px; width: 100%; background: var(--white); border-radius: var(--radius); overflow: hidden; animation: pop .4s cubic-bezier(.2,.8,.2,1); }
+.lightbox__body {
+  max-width: 820px; width: 100%; max-height: calc(100vh - 40px); overflow-y: auto;
+  background: var(--white); border: 2px solid var(--black); border-radius: var(--radius);
+  box-shadow: 10px 10px 0 var(--blue); animation: pop .45s cubic-bezier(.2,.8,.2,1);
+}
 @keyframes pop { from { opacity: 0; transform: scale(.85) rotate(-2deg); } }
-.lightbox__img img, .lightbox__img .print__img--empty { width: 100%; max-height: 70vh; object-fit: contain; aspect-ratio: auto; min-height: 220px; }
-.lightbox__title { padding: 20px 24px 0; }
-.lightbox__text { padding: 6px 24px 24px; color: var(--muted); }
-.lightbox__close { position: absolute; top: 18px; right: 24px; background: none; border: 0; color: var(--white); font-size: 40px; cursor: pointer; }
+.lightbox__stage { position: relative; background: var(--grey); border-bottom: 2px solid var(--black); }
+.lightbox__img { width: 100%; max-height: 62vh; object-fit: contain; margin: 0 auto; }
+.lightbox__img.swap { animation: imgIn .5s ease; }
+@keyframes imgIn { from { opacity: 0; transform: scale(1.04); } }
+.lightbox__nav {
+  position: absolute; top: 50%; margin-top: -24px; width: 48px; height: 48px; border-radius: 50%;
+  border: 2px solid var(--black); background: var(--white); font-size: 28px; line-height: 1; cursor: pointer;
+  box-shadow: 3px 3px 0 var(--black); transition: background .2s;
+}
+.lightbox__nav:hover { background: var(--blue); }
+.lightbox__nav[hidden] { display: none; }
+.lightbox__nav--prev { left: 14px; }
+.lightbox__nav--next { right: 14px; }
+.lightbox__thumbs { display: flex; gap: 10px; padding: 14px 24px 0; }
+.lightbox__thumbs:empty { display: none; }
+.lightbox__thumbs button {
+  width: 64px; height: 64px; border-radius: 12px; border: 2px solid var(--line); cursor: pointer;
+  background-size: cover; background-position: center; opacity: .6; transition: opacity .2s, border-color .2s;
+}
+.lightbox__thumbs button.active { opacity: 1; border-color: var(--black); box-shadow: 3px 3px 0 var(--blue); }
+.lightbox__info { padding: 20px 24px 26px; }
+.lightbox__title { font-size: var(--fs-h3); margin-bottom: 8px; }
+.lightbox__text { font-family: "Space Grotesk", sans-serif; font-size: var(--fs-sub); line-height: 1.5; min-height: 4.5em; }
+.lightbox__typed { background: var(--blue-soft); padding: 0 4px; border-radius: 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.lightbox__close { position: absolute; top: 14px; right: 22px; background: none; border: 0; color: var(--white); font-size: 44px; cursor: pointer; z-index: 2; }
 
 /* Sprachen */
 .langs { display: flex; flex-wrap: wrap; gap: 12px; }

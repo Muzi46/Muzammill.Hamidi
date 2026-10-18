@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body class="loading">
 
@@ -220,32 +220,33 @@
           Vom ersten Entwurf bis zum fertigen Teil. Hier zeige ich meine Lieblingsdrucke.
         </p>
 
-        <!-- So fügst du einen Druck hinzu: Bild in den Ordner "3d-druck" legen und
-             unten bei einer Karte src="3d-druck/DATEINAME.jpg" eintragen. -->
+        <!-- So fügst du ein Projekt hinzu: Bilder in den Ordner "3d-druck" legen und eine Karte kopieren.
+             data-images: alle Bilder des Projekts, getrennt mit |  (das erste wird auf der Karte gezeigt)
+             data-text: der Text, der in der Grossansicht getippt wird -->
         <div class="gallery">
-          <figure class="print reveal tilt" data-anim="flip" data-title="[Name des Drucks]" data-text="[Was ist es, welches Material, wie lange hat es gedauert?]">
-            <div class="print__img print__img--empty"><span>Foto folgt</span></div>
-            <figcaption><h3>[Druck 1]</h3><p>[PLA · Druckzeit]</p></figcaption>
+          <figure class="print reveal tilt" data-anim="flip"
+                  data-images="3d-druck/schmuckbox-1.jpg|3d-druck/schmuckbox-2.jpg"
+                  data-text="Eine Box für meine Uhr, Ketten und Kopfhörer. Mit Scharnier, zwei Klickverschlüssen und einem Muster auf dem Deckel und innen, mehrfarbig gedruckt.">
+            <div class="print__img"><img src="3d-druck/schmuckbox-1.jpg" alt="Schwarze Schmuckbox mit weissem Muster" loading="lazy"></div>
+            <figcaption><h3>Schmuckbox</h3><p>2 Bilder · Mehrfarbig</p></figcaption>
           </figure>
-          <figure class="print reveal tilt" data-anim="flip" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
-            <div class="print__img print__img--empty"><span>Foto folgt</span></div>
-            <figcaption><h3>[Druck 2]</h3><p>[PLA · Druckzeit]</p></figcaption>
+          <figure class="print reveal tilt" data-anim="flip"
+                  data-images="3d-druck/schuhhalter-1.jpg"
+                  data-text="Ein Schuh-Stapler: Ein Schuh steht oben, der andere darunter. So passen doppelt so viele Sneaker ins Regal.">
+            <div class="print__img"><img src="3d-druck/schuhhalter-1.jpg" alt="Sneaker übereinander auf einem weissen Schuhhalter" loading="lazy"></div>
+            <figcaption><h3>Schuhhalter</h3><p>1 Bild · Für mein Regal</p></figcaption>
           </figure>
-          <figure class="print reveal tilt" data-anim="flip" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
-            <div class="print__img print__img--empty"><span>Foto folgt</span></div>
-            <figcaption><h3>[Druck 3]</h3><p>[PLA · Druckzeit]</p></figcaption>
+          <figure class="print reveal tilt" data-anim="flip"
+                  data-images="3d-druck/schneidebrett-1.jpg|3d-druck/schneidebrett-2.jpg"
+                  data-text="Zwei Halter, damit unsere Schneidebretter in der Küche aufrecht stehen und trocknen können. Die Löcher sparen Material und lassen Luft durch.">
+            <div class="print__img"><img src="3d-druck/schneidebrett-1.jpg" alt="Schneidebrett in zwei weissen Haltern" loading="lazy"></div>
+            <figcaption><h3>Schneidebrett-Halter</h3><p>2 Bilder · Für die Küche</p></figcaption>
           </figure>
-          <figure class="print reveal tilt" data-anim="flip" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
-            <div class="print__img print__img--empty"><span>Foto folgt</span></div>
-            <figcaption><h3>[Druck 4]</h3><p>[PLA · Druckzeit]</p></figcaption>
-          </figure>
-          <figure class="print reveal tilt" data-anim="flip" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
-            <div class="print__img print__img--empty"><span>Foto folgt</span></div>
-            <figcaption><h3>[Druck 5]</h3><p>[PLA · Druckzeit]</p></figcaption>
-          </figure>
-          <figure class="print reveal tilt" data-anim="flip" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
-            <div class="print__img print__img--empty"><span>Foto folgt</span></div>
-            <figcaption><h3>[Druck 6]</h3><p>[PLA · Druckzeit]</p></figcaption>
+          <figure class="print reveal tilt" data-anim="flip"
+                  data-images="3d-druck/staubsauger-1.jpg"
+                  data-text="Ein eigenes Ersatzteil für unseren Staubsauger. Gemessen, konstruiert und so gedruckt, dass es genau auf das Rohr passt.">
+            <div class="print__img"><img src="3d-druck/staubsauger-1.jpg" alt="Schwarzes gedrucktes Teil am Staubsaugerrohr" loading="lazy"></div>
+            <figcaption><h3>Staubsauger-Teil</h3><p>1 Bild · Ersatzteil</p></figcaption>
           </figure>
         </div>
       </div>
@@ -283,12 +284,19 @@
   <div class="lightbox" hidden>
     <button class="lightbox__close" aria-label="Schliessen">×</button>
     <div class="lightbox__body">
-      <div class="lightbox__img"></div>
-      <h3 class="lightbox__title"></h3>
-      <p class="lightbox__text"></p>
+      <div class="lightbox__stage">
+        <img class="lightbox__img" src="" alt="">
+        <button class="lightbox__nav lightbox__nav--prev" aria-label="Vorheriges Bild">‹</button>
+        <button class="lightbox__nav lightbox__nav--next" aria-label="Nächstes Bild">›</button>
+      </div>
+      <div class="lightbox__thumbs"></div>
+      <div class="lightbox__info">
+        <h3 class="lightbox__title"></h3>
+        <p class="lightbox__text"><span class="lightbox__typed"></span><span class="caret">|</span></p>
+      </div>
     </div>
   </div>
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>
