@@ -1,5 +1,13 @@
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+// Intro: Logo kurz zeigen, dann nach oben wegschieben
+const intro = document.querySelector(".intro");
+setTimeout(() => {
+  intro.classList.add("done");
+  document.body.classList.remove("loading");
+  document.body.classList.add("started");
+  setTimeout(() => intro.remove(), 1000);
+}, 1100);
 
 // Aktuelles Jahr im Footer
 document.getElementById("jahr").textContent = new Date().getFullYear();
@@ -44,9 +52,7 @@ document.querySelectorAll("[data-split]").forEach((el) => {
 const typed = document.querySelector(".typed");
 if (typed) {
   const words = typed.dataset.words.split("|");
-  if (reduceMotion) {
-    typed.textContent = words[0];
-  } else {
+  {
     let w = 0, c = 0, deleting = false;
     const tick = () => {
       const word = words[w];
@@ -56,12 +62,12 @@ if (typed) {
       c += deleting ? -1 : 1;
       setTimeout(tick, deleting ? 35 : 70);
     };
-    setTimeout(tick, 900);
+    setTimeout(tick, 1900);
   }
 }
 
 // Einblenden beim Scrollen (mit Verzögerung bei Gruppen)
-document.querySelectorAll(".pillars, .stats, .work, .gallery").forEach((group) =>
+document.querySelectorAll(".pillars, .stats, .work, .gallery, .langs").forEach((group) =>
   group.querySelectorAll(".reveal").forEach((el, i) => el.style.setProperty("--d", `${i * 0.1}s`))
 );
 const revealObserver = new IntersectionObserver(
@@ -88,7 +94,7 @@ const countObserver = new IntersectionObserver((entries) =>
       el.textContent = prefix + Math.round(target * (1 - Math.pow(1 - p, 3)));
       if (p < 1) requestAnimationFrame(step);
     };
-    reduceMotion ? (el.textContent = prefix + target) : requestAnimationFrame(step);
+    requestAnimationFrame(step);
     countObserver.unobserve(el);
   }),
   { threshold: 0.6 }
@@ -102,6 +108,19 @@ const onScroll = () => {
   progress.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
 };
 addEventListener("scroll", onScroll, { passive: true });
+
+// Parallax: Hintergrund und Foto bewegen sich beim Scrollen unterschiedlich schnell
+const parallax = [
+  [document.querySelector(".blob--1"), 0.35],
+  [document.querySelector(".blob--2"), -0.2],
+  [document.querySelector(".hero__photo"), 0.12],
+  [document.querySelector(".marquee__track")?.parentElement, 0],
+];
+const onParallax = () => {
+  const y = scrollY;
+  parallax.forEach(([el, speed]) => { if (el && speed) el.style.translate = `0 ${y * speed}px`; });
+};
+addEventListener("scroll", () => requestAnimationFrame(onParallax), { passive: true });
 onScroll();
 
 // Zitate wechseln
@@ -125,12 +144,12 @@ quotes.forEach((_, i) => {
 });
 const restartQuotes = () => {
   clearInterval(quoteTimer);
-  if (!reduceMotion) quoteTimer = setInterval(() => showQuote((q + 1) % quotes.length), 6000);
+  quoteTimer = setInterval(() => showQuote((q + 1) % quotes.length), 6000);
 };
 restartQuotes();
 
 // Effekte nur mit Maus
-if (finePointer && !reduceMotion) {
+if (finePointer) {
   // Licht folgt dem Mauszeiger
   const glow = document.querySelector(".cursor-glow");
   addEventListener("mousemove", (e) => {

@@ -8,9 +8,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
-<body>
+<body class="loading">
+
+  <div class="intro" aria-hidden="true"><div class="intro__logo">MH<span>.</span></div></div>
 
   <div class="progress" aria-hidden="true"></div>
   <div class="cursor-glow" aria-hidden="true"></div>
@@ -79,9 +81,9 @@
     <section id="ueber-mich" class="section">
       <div class="container">
         <p class="kicker reveal">Über mich</p>
-        <h2 class="title reveal">Neugierig, sportlich <br>und immer am Tüfteln.</h2>
+        <h2 class="title reveal">Neugierig, sportlich <br>und immer am <span class="mark">Tüfteln.</span></h2>
         <div class="about">
-          <div class="about__text reveal">
+          <div class="about__text reveal" data-anim="left">
             <p>
               Ich bin 15, wohne in Balsthal und mache seit August 2026 meine Lehre als
               <strong>Entwickler Digitales Business bei Swisscom</strong>, parallel dazu die BMS.
@@ -93,17 +95,17 @@
             </p>
           </div>
           <div class="pillars">
-            <div class="pillar reveal tilt">
+            <div class="pillar reveal tilt" data-anim="flip">
               <span class="pillar__icon">💻</span>
               <h3>Tech</h3>
               <p>AI, Automationen und digitale Abläufe, die Menschen wirklich helfen.</p>
             </div>
-            <div class="pillar reveal tilt">
+            <div class="pillar reveal tilt" data-anim="flip">
               <span class="pillar__icon">🏀</span>
               <h3>Sport</h3>
               <p>Basketball im Team und Kraftsport, wo Dranbleiben zählt.</p>
             </div>
-            <div class="pillar reveal tilt">
+            <div class="pillar reveal tilt" data-anim="flip">
               <span class="pillar__icon">🖨️</span>
               <h3>Maker</h3>
               <p>Ideen entwerfen, drucken, verbessern und nochmal drucken.</p>
@@ -112,10 +114,10 @@
         </div>
 
         <div class="stats">
-          <div class="stat reveal"><span class="stat__num" data-count="15">0</span><span class="stat__label">Jahre alt</span></div>
-          <div class="stat reveal"><span class="stat__num" data-count="6">0</span><span class="stat__label">Sprachen</span></div>
-          <div class="stat reveal"><span class="stat__num" data-count="18" data-prefix="U">0</span><span class="stat__label">Basketball-Team</span></div>
-          <div class="stat reveal"><span class="stat__num" data-count="1">0</span><span class="stat__label">Lehrjahr bei Swisscom</span></div>
+          <div class="stat reveal" data-anim="zoom"><span class="stat__num" data-count="15">0</span><span class="stat__label">Jahre alt</span></div>
+          <div class="stat reveal" data-anim="zoom"><span class="stat__num" data-count="6">0</span><span class="stat__label">Sprachen</span></div>
+          <div class="stat reveal" data-anim="zoom"><span class="stat__num" data-count="18" data-prefix="U">0</span><span class="stat__label">Basketball-Team</span></div>
+          <div class="stat reveal" data-anim="zoom"><span class="stat__num" data-count="1">0</span><span class="stat__label">Lehrjahr bei Swisscom</span></div>
         </div>
       </div>
     </section>
@@ -147,13 +149,13 @@
     </section>
 
     <!-- ===== Arbeit ===== -->
-    <section id="arbeit" class="section">
+    <section id="arbeit" class="section section--grey">
       <div class="container">
         <p class="kicker reveal">Arbeit</p>
-        <h2 class="title reveal">Woran ich bei Swisscom arbeite.</h2>
+        <h2 class="title reveal">Woran ich bei <span class="mark">Swisscom</span> arbeite.</h2>
 
         <div class="work">
-          <article class="work__card work__card--big reveal tilt">
+          <article class="work__card work__card--big reveal tilt" data-anim="left">
             <p class="work__date">seit 17.08.2026</p>
             <h3>[M]INI NET</h3>
             <p>Mein erstes grosses Projekt. Ich plane und gebe über mehrere Monate AI-Schulungen,
@@ -162,12 +164,12 @@
               <li>AI-Schulungen</li><li>Power Automate</li><li>BPMN</li><li>User Flows</li><li>UniqAI</li>
             </ul>
           </article>
-          <article class="work__card reveal tilt">
+          <article class="work__card reveal tilt" data-anim="right">
             <p class="work__date">03.08. – 14.08.2026</p>
             <h3>First Steps</h3>
             <p>Mein Start bei Swisscom: zwei Wochen Einführung in die Swisscom-Welt.</p>
           </article>
-          <article class="work__card reveal tilt">
+          <article class="work__card reveal tilt" data-anim="right">
             <p class="work__date">Mein Werkzeugkasten</p>
             <h3>Skills</h3>
             <div class="bars">
@@ -185,7 +187,7 @@
     <section id="basketball" class="section section--court">
       <div class="court-lines" aria-hidden="true"></div>
       <div class="container basketball">
-        <div class="basketball__logo reveal">
+        <div class="basketball__logo reveal" data-anim="zoom">
           <a href="https://www.49ers.ch/" target="_blank" rel="noopener" class="logo-card tilt">
             <!-- Logo vom Verein 49ers Langenthal (49ers.ch) -->
             <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=200x10000:format=jpg/path/s9ebbe057a96bcac0/image/ife8b5ab6457ed8f3/version/1695049292/image.jpg"
@@ -196,7 +198,7 @@
         </div>
         <div class="basketball__text">
           <p class="kicker reveal">Basketball</p>
-          <h2 class="title reveal">U18 bei den <br>49ers Langenthal.</h2>
+          <h2 class="title reveal">U18 bei den <br><span class="mark">49ers</span> Langenthal.</h2>
           <p class="reveal">
             Basketball ist mein Ausgleich und meine Schule fürs Teamplay. Auf dem Court lerne ich,
             schnell zu entscheiden, mich auf andere zu verlassen und nach einem verlorenen Spiel
@@ -210,10 +212,10 @@
     </section>
 
     <!-- ===== 3D-Druck ===== -->
-    <section id="3d-druck" class="section">
+    <section id="3d-druck" class="section section--grey">
       <div class="container">
         <p class="kicker reveal">3D-Druck</p>
-        <h2 class="title reveal">Was aus meinem Drucker kommt.</h2>
+        <h2 class="title reveal">Was aus meinem <span class="mark">Drucker</span> kommt.</h2>
         <p class="lead reveal">
           Vom ersten Entwurf bis zum fertigen Teil. Hier zeige ich meine Lieblingsdrucke.
         </p>
@@ -221,27 +223,27 @@
         <!-- So fügst du einen Druck hinzu: Bild in den Ordner "3d-druck" legen und
              unten bei einer Karte src="3d-druck/DATEINAME.jpg" eintragen. -->
         <div class="gallery">
-          <figure class="print reveal tilt" data-title="[Name des Drucks]" data-text="[Was ist es, welches Material, wie lange hat es gedauert?]">
+          <figure class="print reveal tilt" data-anim="flip" data-title="[Name des Drucks]" data-text="[Was ist es, welches Material, wie lange hat es gedauert?]">
             <div class="print__img print__img--empty"><span>Foto folgt</span></div>
             <figcaption><h3>[Druck 1]</h3><p>[PLA · Druckzeit]</p></figcaption>
           </figure>
-          <figure class="print reveal tilt" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
+          <figure class="print reveal tilt" data-anim="flip" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
             <div class="print__img print__img--empty"><span>Foto folgt</span></div>
             <figcaption><h3>[Druck 2]</h3><p>[PLA · Druckzeit]</p></figcaption>
           </figure>
-          <figure class="print reveal tilt" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
+          <figure class="print reveal tilt" data-anim="flip" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
             <div class="print__img print__img--empty"><span>Foto folgt</span></div>
             <figcaption><h3>[Druck 3]</h3><p>[PLA · Druckzeit]</p></figcaption>
           </figure>
-          <figure class="print reveal tilt" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
+          <figure class="print reveal tilt" data-anim="flip" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
             <div class="print__img print__img--empty"><span>Foto folgt</span></div>
             <figcaption><h3>[Druck 4]</h3><p>[PLA · Druckzeit]</p></figcaption>
           </figure>
-          <figure class="print reveal tilt" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
+          <figure class="print reveal tilt" data-anim="flip" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
             <div class="print__img print__img--empty"><span>Foto folgt</span></div>
             <figcaption><h3>[Druck 5]</h3><p>[PLA · Druckzeit]</p></figcaption>
           </figure>
-          <figure class="print reveal tilt" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
+          <figure class="print reveal tilt" data-anim="flip" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
             <div class="print__img print__img--empty"><span>Foto folgt</span></div>
             <figcaption><h3>[Druck 6]</h3><p>[PLA · Druckzeit]</p></figcaption>
           </figure>
@@ -250,7 +252,7 @@
     </section>
 
     <!-- ===== Sprachen ===== -->
-    <section class="section section--tight">
+    <section class="section section--tight section--grey">
       <div class="container">
         <p class="kicker reveal">Sprachen</p>
         <ul class="langs reveal">
@@ -263,7 +265,7 @@
     <section id="kontakt" class="section contact">
       <div class="blob blob--3" aria-hidden="true"></div>
       <div class="container">
-        <h2 class="contact__title reveal">Lass uns <span class="outline">reden.</span></h2>
+        <h2 class="contact__title reveal" data-anim="zoom">Lass uns <span class="mark">reden.</span></h2>
         <p class="lead reveal">Du suchst Verstärkung für ein Projekt oder ein Team? Ich freue mich über deine Nachricht.</p>
         <a href="mailto:muzammill.hamidi@swisscom.com" class="btn btn--big magnetic reveal">muzammill.hamidi@swisscom.com</a>
       </div>
@@ -287,6 +289,6 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>
