@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body class="loading">
 
@@ -226,9 +226,9 @@
         <div class="gallery">
           <figure class="print reveal tilt" data-anim="flip"
                   data-images="3d-druck/schmuckbox-1.jpg|3d-druck/schmuckbox-2.jpg"
-                  data-text="Eine Box für meine Uhr, Ketten und Kopfhörer. Mit Scharnier, zwei Klickverschlüssen und einem Muster auf dem Deckel und innen, mehrfarbig gedruckt.">
+                  data-text="Eine Box für meine Uhr, Ketten und Kopfhörer. Mit Scharnier und zwei Klickverschlüssen, damit nichts rausfällt.">
             <div class="print__img"><img src="3d-druck/schmuckbox-1.jpg" alt="Schwarze Schmuckbox mit weissem Muster" loading="lazy"></div>
-            <figcaption><h3>Schmuckbox</h3><p>2 Bilder · Mehrfarbig</p></figcaption>
+            <figcaption><h3>Schmuckbox</h3><p>2 Bilder · Aufbewahrung</p></figcaption>
           </figure>
           <figure class="print reveal tilt" data-anim="flip"
                   data-images="3d-druck/schuhhalter-1.jpg"
@@ -244,9 +244,9 @@
           </figure>
           <figure class="print reveal tilt" data-anim="flip"
                   data-images="3d-druck/staubsauger-1.jpg"
-                  data-text="Ein eigenes Ersatzteil für unseren Staubsauger. Gemessen, konstruiert und so gedruckt, dass es genau auf das Rohr passt.">
-            <div class="print__img"><img src="3d-druck/staubsauger-1.jpg" alt="Schwarzes gedrucktes Teil am Staubsaugerrohr" loading="lazy"></div>
-            <figcaption><h3>Staubsauger-Teil</h3><p>1 Bild · Ersatzteil</p></figcaption>
+                  data-text="Beim Dyson-Staubsauger war der Knopf am Rohr kaputt. Statt ein neues Teil zu kaufen, habe ich einen neuen Knopf gedruckt, und er funktioniert wieder.">
+            <div class="print__img"><img src="3d-druck/staubsauger-1.jpg" alt="Gedruckter schwarzer Knopf am Dyson-Staubsaugerrohr" loading="lazy"></div>
+            <figcaption><h3>Dyson-Knopf</h3><p>1 Bild · Reparatur</p></figcaption>
           </figure>
         </div>
       </div>
@@ -256,9 +256,16 @@
     <section class="section section--tight section--grey">
       <div class="container">
         <p class="kicker reveal">Sprachen</p>
+        <!-- Klick auf eine Sprache zeigt den Text aus data-text -->
         <ul class="langs reveal">
-          <li>Deutsch</li><li>Persisch</li><li>Dari</li><li>Paschto</li><li>Englisch</li><li>Französisch</li>
+          <li><button data-text="Deutsch ist eine meiner Muttersprachen.">Deutsch</button></li>
+          <li><button data-text="Persisch ist meine Muttersprache.">Persisch</button></li>
+          <li><button data-text="Dari ist auch eine meiner Muttersprachen.">Dari</button></li>
+          <li><button data-text="Paschto verstehe ich sehr gut, sprechen kann ich es aber noch nicht so gut.">Paschto</button></li>
+          <li><button data-text="Englisch spreche ich sehr gut.">Englisch</button></li>
+          <li><button data-text="Ich habe ein paar Jahre in der französischen Schweiz gewohnt. Seitdem spreche ich fliessend Französisch, fast wie eine Muttersprache.">Französisch</button></li>
         </ul>
+        <p class="lang-info reveal"><span class="lang-info__typed">Tipp auf eine Sprache, um mehr zu erfahren.</span><span class="caret">|</span></p>
       </div>
     </section>
 
@@ -297,6 +304,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
 </body>
 </html>

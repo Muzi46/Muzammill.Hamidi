@@ -349,8 +349,18 @@ ul, ol { list-style: none; }
 
 /* Sprachen */
 .langs { display: flex; flex-wrap: wrap; gap: 12px; }
-.langs li { font-size: clamp(18px, 2vw, 22px); font-weight: 500; padding: 8px 22px; border: 2px solid var(--black); border-radius: 999px; background: var(--white); transition: background .3s, transform .3s; }
-.langs li:hover, .langs li:active { background: var(--blue); transform: translateY(-4px) rotate(-3deg); }
+.langs button {
+  font-family: "Space Grotesk", sans-serif; font-size: clamp(18px, 2vw, 22px); font-weight: 500; color: var(--black);
+  padding: 8px 22px; border: 2px solid var(--black); border-radius: 999px; background: var(--white); cursor: pointer;
+  transition: background .3s, transform .3s, box-shadow .3s;
+}
+.langs button:hover { background: var(--blue-soft); transform: translateY(-4px) rotate(-3deg); }
+.langs button.active { background: var(--blue); box-shadow: 4px 4px 0 var(--black); transform: translateY(-4px); }
+.lang-info {
+  margin-top: 24px; max-width: 720px; min-height: 3.2em;
+  font-family: "Space Grotesk", sans-serif; font-size: var(--fs-sub); line-height: 1.5;
+}
+.lang-info__typed { background: var(--blue-soft); padding: 0 4px; border-radius: 4px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 
 /* Kontakt */
 .contact { text-align: center; padding: 130px 0; }

@@ -245,3 +245,21 @@ addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight" && lbImages.length > 1) showImage(lbIndex + 1);
   if (e.key === "ArrowLeft" && lbImages.length > 1) showImage(lbIndex - 1);
 });
+
+// Sprachen: Klick zeigt einen kurzen, getippten Text
+const langInfo = document.querySelector(".lang-info__typed");
+let langTimer;
+document.querySelectorAll(".langs button").forEach((btn) =>
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".langs button").forEach((b) => b.classList.toggle("active", b === btn));
+    clearTimeout(langTimer);
+    const text = btn.dataset.text;
+    let c = 0;
+    langInfo.textContent = "";
+    const tick = () => {
+      langInfo.textContent = text.slice(0, ++c);
+      if (c < text.length) langTimer = setTimeout(tick, 22);
+    };
+    tick();
+  })
+);
