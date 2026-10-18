@@ -3,27 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Muzammill Hamidi – Entwickler Digitales Business</title>
-  <meta name="description" content="Portfolio von Muzammill Hamidi, Lernender Entwickler Digitales Business bei Swisscom.">
+  <title>Muzammill Hamidi</title>
+  <meta name="description" content="Muzammill Hamidi: Lernender Entwickler Digitales Business bei Swisscom, Basketballer bei den 49ers Langenthal und Maker mit 3D-Drucker.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <div class="progress" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
   <!-- ===== Navigation ===== -->
   <header class="nav">
     <div class="container nav__inner">
-      <a href="#start" class="nav__logo">MH</a>
+      <a href="#start" class="nav__logo">MH<span>.</span></a>
       <button class="nav__toggle" aria-label="Menü öffnen" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <nav class="nav__links">
         <a href="#ueber-mich">Über mich</a>
-        <a href="#skills">Skills</a>
-        <a href="#projekte">Projekte</a>
-        <a href="#persoenlich">Sprachen &amp; Hobbys</a>
+        <a href="#arbeit">Arbeit</a>
+        <a href="#basketball">Basketball</a>
+        <a href="#3d-druck">3D-Druck</a>
         <a href="#kontakt" class="btn btn--small">Kontakt</a>
       </nav>
     </div>
@@ -33,171 +36,256 @@
 
     <!-- ===== Hero ===== -->
     <section id="start" class="hero">
-      <div class="crosses crosses--top" aria-hidden="true"><span></span><span></span><span></span></div>
-      <svg class="poly" viewBox="0 0 300 400" aria-hidden="true">
-        <path d="M40 20 L150 60 L260 10 L230 140 L290 210 L170 230 L90 160 Z M150 60 L170 230 M150 60 L90 160 M230 140 L170 230 M260 10 L150 60 M90 160 L40 300 L170 230 L210 360 L290 210 M40 300 L130 380 L210 360 M40 20 L90 160" />
-      </svg>
+      <div class="blob blob--1" aria-hidden="true"></div>
+      <div class="blob blob--2" aria-hidden="true"></div>
+      <div class="grid-bg" aria-hidden="true"></div>
+
       <div class="container hero__inner">
         <div class="hero__text">
-          <h1>Muzammill<br>Hamidi</h1>
-          <p class="hero__role">Entwickler<br>Digitales Business</p>
-          <p class="hero__sub">Im 1. Lehrjahr bei Swisscom · mit BMS</p>
+          <p class="hero__hello">Hey, ich bin</p>
+          <h1 class="hero__name" data-split>Muzammill Hamidi</h1>
+          <p class="hero__typed">
+            <span class="typed" data-words="Entwickler Digitales Business|Basketballer bei den 49ers|3D-Druck-Maker|AI-Enthusiast"></span><span class="caret">|</span>
+          </p>
           <p class="hero__lead">
-            Ich vereinfache gerne Abläufe und zeige anderen neue Tools, von AI über
-            Power Automate bis zu sauberen User Flows.
+            Ich mag es, Dinge einfacher zu machen. Ob ein Ablauf im Büro, ein Spielzug
+            auf dem Court oder ein Teil aus dem 3D-Drucker.
           </p>
           <div class="hero__actions">
-            <a href="#kontakt" class="btn">Kontakt aufnehmen</a>
-            <a href="#projekte" class="btn btn--ghost">Meine Projekte</a>
+            <a href="#ueber-mich" class="btn magnetic">Lern mich kennen</a>
+            <a href="#kontakt" class="btn btn--ghost magnetic">Schreib mir</a>
           </div>
         </div>
         <div class="hero__photo">
+          <div class="ring" aria-hidden="true"></div>
           <img src="foto.jpg" alt="Porträt von Muzammill Hamidi">
+          <span class="badge badge--1">🏀 U18</span>
+          <span class="badge badge--2">💡 Swisscom</span>
+          <span class="badge badge--3">🖨️ Maker</span>
         </div>
       </div>
+      <a href="#ueber-mich" class="scroll-hint" aria-label="Nach unten scrollen"><span></span></a>
     </section>
+
+    <!-- ===== Laufband ===== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>AI</span><span>Power Automate</span><span>Basketball</span><span>3D-Druck</span><span>M365</span><span>UniqAI</span><span>Calisthenics</span><span>User Flows</span><span>BPMN</span>
+        <span>AI</span><span>Power Automate</span><span>Basketball</span><span>3D-Druck</span><span>M365</span><span>UniqAI</span><span>Calisthenics</span><span>User Flows</span><span>BPMN</span>
+      </div>
+    </div>
 
     <!-- ===== Über mich ===== -->
     <section id="ueber-mich" class="section">
-      <div class="container about">
-        <div class="about__text">
-          <h2 class="pill">Über mich</h2>
-          <p>
-            Ich bin Muzammill Hamidi und im ersten Lehrjahr als Entwickler Digitales Business
-            bei Swisscom. Parallel dazu besuche ich die Berufsmaturitätsschule (BMS).
-          </p>
-          <p>
-            Im Projekt [M]INI NET habe ich AI-Schulungen geplant und durchgeführt, Automationen
-            mit Power Automate gebaut und BPMN-Diagramme sowie User Flows erstellt. Dabei habe ich
-            gemerkt, dass es mir Freude macht, Abläufe zu vereinfachen und anderen neue Tools zu
-            zeigen. Dieses Wissen möchte ich in neuen Projekten und Teams vertiefen.
-          </p>
-          <p>
-            Teamarbeit kenne ich auch vom Basketball, und durch den Kraftsport habe ich gelernt,
-            dranzubleiben.
-          </p>
+      <div class="container">
+        <p class="kicker reveal">Über mich</p>
+        <h2 class="title reveal">Neugierig, sportlich <br>und immer am Tüfteln.</h2>
+        <div class="about">
+          <div class="about__text reveal">
+            <p>
+              Ich bin 15, wohne in Balsthal und mache seit August 2026 meine Lehre als
+              <strong>Entwickler Digitales Business bei Swisscom</strong>, parallel dazu die BMS.
+            </p>
+            <p>
+              Am meisten Spass macht es mir, anderen neue Tools zu zeigen und Abläufe so zu bauen,
+              dass sie einfach funktionieren. Neben der Arbeit stehe ich auf dem Basketballfeld,
+              trainiere Calisthenics oder schaue meinem 3D-Drucker beim Arbeiten zu.
+            </p>
+          </div>
+          <div class="pillars">
+            <div class="pillar reveal tilt">
+              <span class="pillar__icon">💻</span>
+              <h3>Tech</h3>
+              <p>AI, Automationen und digitale Abläufe, die Menschen wirklich helfen.</p>
+            </div>
+            <div class="pillar reveal tilt">
+              <span class="pillar__icon">🏀</span>
+              <h3>Sport</h3>
+              <p>Basketball im Team und Kraftsport, wo Dranbleiben zählt.</p>
+            </div>
+            <div class="pillar reveal tilt">
+              <span class="pillar__icon">🖨️</span>
+              <h3>Maker</h3>
+              <p>Ideen entwerfen, drucken, verbessern und nochmal drucken.</p>
+            </div>
+          </div>
         </div>
-        <aside class="panel">
-          <h3 class="pill pill--light">Steckbrief</h3>
-          <dl class="facts">
-            <dt>Alter</dt><dd>15 Jahre</dd>
-            <dt>Wohnort</dt><dd>Balsthal</dd>
-            <dt>Team</dt><dd>GHR-SCS-NEX-INP-10</dd>
-          </dl>
-          <h3 class="pill pill--light">Wochenplan</h3>
-          <dl class="facts">
-            <dt>Montag – Mittwoch</dt><dd>Im Betrieb</dd>
-            <dt>Donnerstag</dt><dd>Berufsschule</dd>
-            <dt>Freitag</dt><dd>BM-Schule</dd>
-          </dl>
-        </aside>
+
+        <div class="stats">
+          <div class="stat reveal"><span class="stat__num" data-count="15">0</span><span class="stat__label">Jahre alt</span></div>
+          <div class="stat reveal"><span class="stat__num" data-count="6">0</span><span class="stat__label">Sprachen</span></div>
+          <div class="stat reveal"><span class="stat__num" data-count="18" data-prefix="U">0</span><span class="stat__label">Basketball-Team</span></div>
+          <div class="stat reveal"><span class="stat__num" data-count="1">0</span><span class="stat__label">Lehrjahr bei Swisscom</span></div>
+        </div>
       </div>
     </section>
 
-    <!-- ===== Skills ===== -->
-    <section id="skills" class="section section--alt">
+    <!-- ===== Zitate ===== -->
+    <section class="quotes" aria-label="Zitate, die mich motivieren">
       <div class="container">
-        <h2 class="pill">Skills</h2>
-        <div class="cards cards--4">
-          <div class="card">
-            <span class="card__icon">M365</span>
-            <h3>Microsoft 365</h3>
-            <p>Grundkenntnisse in den M365 Apps</p>
-          </div>
-          <div class="card">
-            <span class="card__icon">AI</span>
-            <h3>Künstliche Intelligenz</h3>
-            <p>Grundkenntnisse in AI, Schulungen selbst geplant und gegeben</p>
-          </div>
-          <div class="card">
-            <span class="card__icon">UQ</span>
-            <h3>UniqAI</h3>
-            <p>Grundkenntnisse in UniqAI</p>
-          </div>
-          <div class="card">
-            <span class="card__icon">PA</span>
-            <h3>Power Automate</h3>
-            <p>Grundkenntnisse, erste Automationen gebaut</p>
-          </div>
+        <span class="quotes__mark" aria-hidden="true">“</span>
+        <div class="quotes__slides">
+          <figure class="quote is-active">
+            <blockquote>Hard work beats talent when talent doesn't work hard.</blockquote>
+            <figcaption>Tim Notke <span>Harte Arbeit schlägt Talent, wenn Talent nicht hart arbeitet.</span></figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote>Talent wins games, but teamwork and intelligence win championships.</blockquote>
+            <figcaption>Michael Jordan <span>Talent gewinnt Spiele, Teamwork und Köpfchen gewinnen Meisterschaften.</span></figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote>The best way to predict the future is to invent it.</blockquote>
+            <figcaption>Alan Kay <span>Der beste Weg, die Zukunft vorherzusagen, ist, sie zu erfinden.</span></figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote>Discipline is the bridge between goals and accomplishment.</blockquote>
+            <figcaption>Jim Rohn <span>Disziplin ist die Brücke zwischen Zielen und Erfolg.</span></figcaption>
+          </figure>
         </div>
-        <ul class="tags">
-          <li>BPMN-Diagramme</li><li>User Flows</li><li>Schulungen durchführen</li><li>Prozesse vereinfachen</li>
-        </ul>
+        <div class="quotes__dots" role="tablist" aria-label="Zitat wählen"></div>
       </div>
     </section>
 
-    <!-- ===== Projekte & Erfahrung ===== -->
-    <section id="projekte" class="section">
+    <!-- ===== Arbeit ===== -->
+    <section id="arbeit" class="section">
       <div class="container">
-        <h2 class="pill">Projekte &amp; Erfahrung</h2>
-        <ol class="timeline">
-          <li class="timeline__item">
-            <p class="timeline__date">17.08.2026 – 01.02.2027</p>
+        <p class="kicker reveal">Arbeit</p>
+        <h2 class="title reveal">Woran ich bei Swisscom arbeite.</h2>
+
+        <div class="work">
+          <article class="work__card work__card--big reveal tilt">
+            <p class="work__date">seit 17.08.2026</p>
             <h3>[M]INI NET</h3>
-            <ul class="bullets">
-              <li>Verschiedene AI-Schulungen über mehrere Monate geplant und durchgeführt</li>
-              <li>Automationen mit Power Automate gebaut</li>
-              <li>BPMN-Diagramme und User Flows erstellt</li>
-              <li>UniqAI kennengelernt</li>
+            <p>Mein erstes grosses Projekt. Ich plane und gebe über mehrere Monate AI-Schulungen,
+              baue Automationen mit Power Automate und zeichne BPMN-Diagramme und User Flows.</p>
+            <ul class="chips">
+              <li>AI-Schulungen</li><li>Power Automate</li><li>BPMN</li><li>User Flows</li><li>UniqAI</li>
             </ul>
-          </li>
-          <li class="timeline__item">
-            <p class="timeline__date">03.08.2026 – 14.08.2026</p>
+          </article>
+          <article class="work__card reveal tilt">
+            <p class="work__date">03.08. – 14.08.2026</p>
             <h3>First Steps</h3>
-            <p>Einführung in die Swisscom-Welt zum Start der Lehre.</p>
-          </li>
-          <li class="timeline__item">
-            <p class="timeline__date">seit 08.2026</p>
-            <h3>Lehre Entwickler Digitales Business</h3>
-            <p>Swisscom (Schweiz) AG, parallel Berufsmaturitätsschule (BMS).</p>
-          </li>
-        </ol>
+            <p>Mein Start bei Swisscom: zwei Wochen Einführung in die Swisscom-Welt.</p>
+          </article>
+          <article class="work__card reveal tilt">
+            <p class="work__date">Mein Werkzeugkasten</p>
+            <h3>Skills</h3>
+            <div class="bars">
+              <div class="bar"><span>M365 Apps</span><i style="--w:55%"></i></div>
+              <div class="bar"><span>AI</span><i style="--w:60%"></i></div>
+              <div class="bar"><span>UniqAI</span><i style="--w:50%"></i></div>
+              <div class="bar"><span>Power Automate</span><i style="--w:45%"></i></div>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- ===== Sprachen & Hobbys ===== -->
-    <section id="persoenlich" class="section section--alt">
-      <div class="container split">
-        <div class="panel">
-          <h2 class="pill pill--light">Sprachen</h2>
-          <ul class="list-grid">
-            <li>Deutsch</li><li>Persisch</li><li>Dari</li>
-            <li>Französisch</li><li>Englisch</li><li>Paschto</li>
+    <!-- ===== Basketball ===== -->
+    <section id="basketball" class="section section--court">
+      <div class="court-lines" aria-hidden="true"></div>
+      <div class="container basketball">
+        <div class="basketball__logo reveal">
+          <a href="https://www.49ers.ch/" target="_blank" rel="noopener" class="logo-card tilt">
+            <!-- Logo vom Verein 49ers Langenthal (49ers.ch) -->
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=200x10000:format=jpg/path/s9ebbe057a96bcac0/image/ife8b5ab6457ed8f3/version/1695049292/image.jpg"
+                 alt="Logo 49ers Langenthal"
+                 onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'logo-fallback',textContent:'49ers'}))">
+          </a>
+          <div class="ball" aria-hidden="true">🏀</div>
+        </div>
+        <div class="basketball__text">
+          <p class="kicker reveal">Basketball</p>
+          <h2 class="title reveal">U18 bei den <br>49ers Langenthal.</h2>
+          <p class="reveal">
+            Basketball ist mein Ausgleich und meine Schule fürs Teamplay. Auf dem Court lerne ich,
+            schnell zu entscheiden, mich auf andere zu verlassen und nach einem verlorenen Spiel
+            wieder aufzustehen. Das nehme ich mit in jedes Projekt.
+          </p>
+          <ul class="chips reveal">
+            <li>Team U18</li><li>Teamplay</li><li>Disziplin</li><li>Calisthenics als Ergänzung</li>
           </ul>
         </div>
-        <div class="panel">
-          <h2 class="pill pill--light">Hobbys</h2>
-          <ul class="hobbies">
-            <li><strong>Basketball</strong>Club 49ers</li>
-            <li><strong>Kraftsport</strong>Calisthenics</li>
-            <li><strong>3D-Druck</strong>Eigene Teile entwerfen und drucken</li>
-          </ul>
+      </div>
+    </section>
+
+    <!-- ===== 3D-Druck ===== -->
+    <section id="3d-druck" class="section">
+      <div class="container">
+        <p class="kicker reveal">3D-Druck</p>
+        <h2 class="title reveal">Was aus meinem Drucker kommt.</h2>
+        <p class="lead reveal">
+          Vom ersten Entwurf bis zum fertigen Teil. Hier zeige ich meine Lieblingsdrucke.
+        </p>
+
+        <!-- So fügst du einen Druck hinzu: Bild in den Ordner "3d-druck" legen und
+             unten bei einer Karte src="3d-druck/DATEINAME.jpg" eintragen. -->
+        <div class="gallery">
+          <figure class="print reveal tilt" data-title="[Name des Drucks]" data-text="[Was ist es, welches Material, wie lange hat es gedauert?]">
+            <div class="print__img print__img--empty"><span>Foto folgt</span></div>
+            <figcaption><h3>[Druck 1]</h3><p>[PLA · Druckzeit]</p></figcaption>
+          </figure>
+          <figure class="print reveal tilt" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
+            <div class="print__img print__img--empty"><span>Foto folgt</span></div>
+            <figcaption><h3>[Druck 2]</h3><p>[PLA · Druckzeit]</p></figcaption>
+          </figure>
+          <figure class="print reveal tilt" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
+            <div class="print__img print__img--empty"><span>Foto folgt</span></div>
+            <figcaption><h3>[Druck 3]</h3><p>[PLA · Druckzeit]</p></figcaption>
+          </figure>
+          <figure class="print reveal tilt" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
+            <div class="print__img print__img--empty"><span>Foto folgt</span></div>
+            <figcaption><h3>[Druck 4]</h3><p>[PLA · Druckzeit]</p></figcaption>
+          </figure>
+          <figure class="print reveal tilt" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
+            <div class="print__img print__img--empty"><span>Foto folgt</span></div>
+            <figcaption><h3>[Druck 5]</h3><p>[PLA · Druckzeit]</p></figcaption>
+          </figure>
+          <figure class="print reveal tilt" data-title="[Name des Drucks]" data-text="[Kurze Beschreibung]">
+            <div class="print__img print__img--empty"><span>Foto folgt</span></div>
+            <figcaption><h3>[Druck 6]</h3><p>[PLA · Druckzeit]</p></figcaption>
+          </figure>
         </div>
+      </div>
+    </section>
+
+    <!-- ===== Sprachen ===== -->
+    <section class="section section--tight">
+      <div class="container">
+        <p class="kicker reveal">Sprachen</p>
+        <ul class="langs reveal">
+          <li>Deutsch</li><li>Persisch</li><li>Dari</li><li>Paschto</li><li>Englisch</li><li>Französisch</li>
+        </ul>
       </div>
     </section>
 
     <!-- ===== Kontakt ===== -->
     <section id="kontakt" class="section contact">
+      <div class="blob blob--3" aria-hidden="true"></div>
       <div class="container">
-        <h2 class="pill">Kontakt</h2>
-        <p class="contact__lead">
-          Ich freue mich über Ihre Nachricht, ob für ein Projekt, ein Team oder einen Austausch.
-        </p>
-        <div class="contact__links">
-          <a href="mailto:muzammill.hamidi@swisscom.com" class="btn">muzammill.hamidi@swisscom.com</a>
-        </div>
-        <p class="contact__note">Referenzen gebe ich gerne auf Anfrage an.</p>
+        <h2 class="contact__title reveal">Lass uns <span class="outline">reden.</span></h2>
+        <p class="lead reveal">Du suchst Verstärkung für ein Projekt oder ein Team? Ich freue mich über deine Nachricht.</p>
+        <a href="mailto:muzammill.hamidi@swisscom.com" class="btn btn--big magnetic reveal">muzammill.hamidi@swisscom.com</a>
       </div>
-      <div class="crosses crosses--bottom" aria-hidden="true"><span></span><span></span><span></span></div>
     </section>
 
   </main>
 
   <footer class="footer">
     <div class="container">
-      <p>© <span id="jahr"></span> Muzammill Hamidi</p>
+      <p>© <span id="jahr"></span> Muzammill Hamidi · Gebaut mit HTML, CSS und viel Neugier</p>
     </div>
   </footer>
+
+  <!-- Grossansicht für 3D-Drucke -->
+  <div class="lightbox" hidden>
+    <button class="lightbox__close" aria-label="Schliessen">×</button>
+    <div class="lightbox__body">
+      <div class="lightbox__img"></div>
+      <h3 class="lightbox__title"></h3>
+      <p class="lightbox__text"></p>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
