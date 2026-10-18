@@ -73,11 +73,10 @@ document.querySelectorAll(".pillars, .stats, .work, .gallery, .langs").forEach((
 const revealObserver = new IntersectionObserver(
   (entries) =>
     entries.forEach((e) => {
-      if (!e.isIntersecting) return;
-      e.target.classList.add("visible");
-      revealObserver.unobserve(e.target);
+      // Bei jedem Scrollen neu: rein = sichtbar, raus = wieder verstecken
+      e.target.classList.toggle("visible", e.isIntersecting);
     }),
-  { threshold: 0.15 }
+  { threshold: 0.12 }
 );
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
@@ -95,7 +94,6 @@ const countObserver = new IntersectionObserver((entries) =>
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
-    countObserver.unobserve(el);
   }),
   { threshold: 0.6 }
 );
@@ -125,6 +123,7 @@ onScroll();
 
 // Zitate wechseln
 const quotes = document.querySelectorAll(".quote");
+if (quotes.length) {
 const dots = document.querySelector(".quotes__dots");
 let q = 0, quoteTimer;
 const showQuote = (i) => {
@@ -147,6 +146,7 @@ const restartQuotes = () => {
   quoteTimer = setInterval(() => showQuote((q + 1) % quotes.length), 6000);
 };
 restartQuotes();
+}
 
 // Effekte nur mit Maus
 if (finePointer) {
@@ -181,6 +181,7 @@ if (finePointer) {
 
 // Grossansicht für 3D-Drucke: grosses Bild, weitere Bilder und getippter Text
 const lightbox = document.querySelector(".lightbox");
+if (lightbox) {
 const lbImg = lightbox.querySelector(".lightbox__img");
 const lbThumbs = lightbox.querySelector(".lightbox__thumbs");
 const lbTyped = lightbox.querySelector(".lightbox__typed");
@@ -245,6 +246,7 @@ addEventListener("keydown", (e) => {
   if (e.key === "ArrowRight" && lbImages.length > 1) showImage(lbIndex + 1);
   if (e.key === "ArrowLeft" && lbImages.length > 1) showImage(lbIndex - 1);
 });
+}
 
 // Sprachen: Klick zeigt einen kurzen, getippten Text
 const langInfo = document.querySelector(".lang-info__typed");

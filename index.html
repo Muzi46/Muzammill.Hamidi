@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body class="loading">
 
@@ -27,8 +27,10 @@
       <nav class="nav__links">
         <a href="#ueber-mich">Über mich</a>
         <a href="#arbeit">Arbeit</a>
+        <a href="#schule">Schule</a>
         <a href="#basketball">Basketball</a>
         <a href="#3d-druck">3D-Druck</a>
+        <a href="ferien.html">Ferien</a>
         <a href="#kontakt" class="btn btn--small">Kontakt</a>
       </nav>
     </div>
@@ -173,12 +175,40 @@
             <p class="work__date">Mein Werkzeugkasten</p>
             <h3>Skills</h3>
             <div class="bars">
-              <div class="bar"><span>M365 Apps</span><i style="--w:55%"></i></div>
-              <div class="bar"><span>AI</span><i style="--w:60%"></i></div>
-              <div class="bar"><span>UniqAI</span><i style="--w:50%"></i></div>
-              <div class="bar"><span>Power Automate</span><i style="--w:45%"></i></div>
+              <!-- Balkenlänge bei --w ändern, z. B. --w:20% -->
+              <div class="bar"><span>M365 Apps <b>20 %</b></span><i style="--w:20%"></i></div>
+              <div class="bar"><span>AI <b>10 %</b></span><i style="--w:10%"></i></div>
+              <div class="bar"><span>UniqAI <b>10 %</b></span><i style="--w:10%"></i></div>
+              <div class="bar"><span>Power Automate <b>10 %</b></span><i style="--w:10%"></i></div>
+              <p class="bars__note">Ich stehe am Anfang und lerne jeden Tag dazu.</p>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Schule ===== -->
+    <section id="schule" class="section">
+      <div class="container school">
+        <div class="school__text">
+          <p class="kicker reveal">Schule</p>
+          <h2 class="title reveal">Zwei Tage <span class="mark">Schule</span> an der WST Thun.</h2>
+          <p class="reveal">
+            Neben der Lehre gehe ich an die Wirtschaftsschule Thun. Dort lerne ich die Theorie
+            zu meinem Beruf und mache gleichzeitig die Berufsmaturität.
+          </p>
+        </div>
+        <a href="https://wst.ch/" target="_blank" rel="noopener" class="school__logo reveal tilt" data-anim="zoom">
+          <!-- Logo der Wirtschaftsschule Thun (wst.ch) -->
+          <img src="https://wst.ch/wp-content/uploads/2019/09/WST_LOGO_left_RGB_colored-1.png" alt="Logo der Wirtschaftsschule Thun"
+               onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'logo-fallback',textContent:'WST Thun'}))">
+        </a>
+      </div>
+      <div class="container">
+        <div class="week">
+          <div class="day reveal" data-anim="flip"><span class="day__name">Mo – Mi</span><h3>Im Betrieb</h3><p>Bei Swisscom an meinen Projekten.</p></div>
+          <div class="day day--school reveal" data-anim="flip"><span class="day__name">Donnerstag</span><h3>Berufsschule</h3><p>An der WST Thun, Fachunterricht für Entwickler Digitales Business.</p></div>
+          <div class="day day--school reveal" data-anim="flip"><span class="day__name">Freitag</span><h3>BM-Schule</h3><p>An der WST Thun, für die Berufsmaturität.</p></div>
         </div>
       </div>
     </section>
@@ -304,6 +334,6 @@
     </div>
   </div>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=6"></script>
 </body>
 </html>
